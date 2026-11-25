@@ -6,13 +6,17 @@ on:
 permissions: {}
 
 concurrency:
-  group: release-${{ github.sha }}
-  cancel-in-progress: false
+  group: "${{ github.workflow }}-${{ github.head_ref || github.run_id }}"
+  cancel-in-progress: true
 
 env:
   CARGO_INCREMENTAL: 0
   CARGO_PROFILE_DEV_DEBUG: 0
   MUSL_IMAGE: ghcr.io/joshuarli/musl-toolchain@sha256:8a372c6a873b7613987fecc1102f68fb16f4fc4e607432adad924dc1506eae54
+
+defaults:
+  run:
+    shell: bash -euo pipefail {0}
 
 jobs:
   build:
