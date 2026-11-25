@@ -36,7 +36,7 @@ Search and Rewrite code at large scale using AST pattern.
                           /____/         /_/
 "#;
 #[derive(Parser)]
-#[clap(author, version, about, long_about = LOGO)]
+#[clap(author, version, about, long_about = LOGO, after_help = include_str!("owned.footer"), after_long_help = include_str!("owned.footer"))]
 /**
  * TODO: add some description for ast-grep: sg
  * Example:
